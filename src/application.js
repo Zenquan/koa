@@ -1,6 +1,6 @@
 const http = require('http'),
   Event = require('events'),
-  compose = require('./compose'),
+  compose = require('@jomsou/koa-compose'),
   context = require('./context'),
   request = require('./request'),
   response = require('./response');
@@ -14,7 +14,7 @@ class Application extends Event {
     this.response = Object.create(response);
   }
   use (middleware) {
-    if (typeof fn !== 'function') throw new TypeError('middleware should be a function!');
+    if (typeof middleware !== 'function') throw new TypeError('middleware should be a function!');
     this.middlewares.push(middleware);
     return this;
   }
